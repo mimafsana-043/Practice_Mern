@@ -14,7 +14,7 @@ import start_people from '../../../assets/brands/start_people.png';
 
 const Brands = () => {
     return (
-        <div className='py-12'>
+        <div className='p-12'>
             <p className='text-3xl font-bold text-[#03373D] text-center p-6'>We've helped thousands of sales team</p>
             <Swiper
                 modules={[Autoplay, Navigation]}
