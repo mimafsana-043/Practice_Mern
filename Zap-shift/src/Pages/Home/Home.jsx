@@ -1,6 +1,7 @@
 import bookingIcon from '../../assets/bookingIcon.png';
 import Servive from "../../assets/service.png";
 import Banner from "./Banner/Banner";
+import Brands from './Brannds/Brands';
 const Home = () => {
     return (
         <div className='mt-10'>
@@ -116,6 +117,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+            <Brands></Brands>
 
         </div>
     );
