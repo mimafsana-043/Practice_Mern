@@ -49,7 +49,7 @@ const Home = () => {
                     Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to<br></br> business shipments — we deliver on time, every time.
                 </p>
                 <div className='grid grid-cols-3 gap-5 justify-content '>
-                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl">
+                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl hover:shadow-lg hover:bg-amber-400 transition-shadow duration-300">
                         <figure className="px-10 pt-10 ">
                             <img src={Servive} alt="Shoes" className="rounded-xl" />
                         </figure>
@@ -60,7 +60,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl">
+                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl hover:shadow-lg hover:bg-amber-400 transition-shadow duration-300">
                         <figure className="px-10 pt-10 ">
                             <img src={Servive} alt="Shoes" className="rounded-xl" />
                         </figure>
@@ -71,7 +71,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl">
+                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl hover:shadow-lg hover:bg-amber-400 transition-shadow duration-300">
                         <figure className="px-10 pt-10 ">
                             <img src={Servive} alt="Shoes" className="rounded-xl" />
                         </figure>
@@ -82,7 +82,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl">
+                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl hover:shadow-lg hover:bg-amber-400 transition-shadow duration-300">
                         <figure className="px-10 pt-10 ">
                             <img src={Servive} alt="Shoes" className="rounded-xl" />
                         </figure>
@@ -93,7 +93,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl">
+                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl hover:shadow-lg hover:bg-amber-400 transition-shadow duration-300">
                         <figure className="px-10 pt-10 ">
                             <img src={Servive} alt="Shoes" className="rounded-xl" />
                         </figure>
@@ -104,7 +104,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl">
+                    <div className="card bg-base-100 w-[360px] shadow-sm m-5 rounded-xl hover:shadow-lg hover:bg-amber-400 transition-shadow duration-300">
                         <figure className="px-10 pt-10 ">
                             <img src={Servive} alt="Shoes" className="rounded-xl" />
                         </figure>
