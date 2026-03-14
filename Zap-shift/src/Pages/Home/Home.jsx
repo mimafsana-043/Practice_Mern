@@ -3,6 +3,10 @@ import Servive from "../../assets/service.png";
 import Banner from "./Banner/Banner";
 import Brands from './Brannds/Brands';
 import Extra from './Extra/Extra';
+import Reveiws from './Reveiws/Reveiws';
+
+const reviewsData = fetch('/reviews.json').then(res => res.json());
+
 const Home = () => {
     return (
         <div className='mt-10'>
@@ -122,6 +126,8 @@ const Home = () => {
             <Brands></Brands>
 
             <Extra></Extra>
+
+            <Reveiws reviewsData={reviewsData}></Reveiws>
 
         </div>
     );
