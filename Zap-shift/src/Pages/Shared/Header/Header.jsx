@@ -3,8 +3,9 @@ import Logo from "../../../Components/Logo/Logo";
 
 const Header = () => {
     const links = <>
-        <li><NavLink to="">Services</NavLink></li>
-        <li><NavLink to="">Services</NavLink></li>
+        <li><NavLink to="/services">Services</NavLink></li>
+        <li><NavLink to="/coverage">Coverage</NavLink></li>
+        <li><NavLink to="/contact">Contact</NavLink></li>
     </>
     return (
         <div>
