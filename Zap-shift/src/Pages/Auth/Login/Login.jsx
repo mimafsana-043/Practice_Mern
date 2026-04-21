@@ -1,16 +1,21 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const { signInUser } = useAuth();
+	const location = useLocation();
+	const navigate = useNavigate();
+	console.log(location);
+
 	const handleLogin = (data) => {
 		console.log(data);
 		signInUser(data.email, data.password)
 			.then(result => {
 				console.log(result.user);
+				navigate(location?.state || "/");
 			})
 			.catch(error => {
 				console.error(error);
@@ -47,7 +52,9 @@ const Login = () => {
 				<SocialLogin></SocialLogin>
 			</div>
 			<p className="mt-6 text-center text-sm text-slate-600">
-				New to Zap Shift? <Link to="/register" className="font-semibold text-[#03373D] underline-offset-4 transition hover:underline">Register</Link>
+				New to Zap Shift? <Link 
+				state = {location.state}
+				to="/register" className="font-semibold text-[#03373D] underline-offset-4 transition hover:underline">Register</Link>
 			</p>
 		</div>
 

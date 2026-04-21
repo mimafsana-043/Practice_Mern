@@ -1,25 +1,50 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
-	const { registerUser } = useAuth();
+	const { registerUser, updateUserProfile } = useAuth();
+	const location = useLocation();
+	const navigate = useNavigate();
+	console.log('in register',location);
 
 	const handleRegistration = (data) => {
-		console.log(data);
+		console.log(data.photo[0]);
 		registerUser(data.email, data.password)
 			.then(result => {
 				const user = result.user;
 				console.log(user);
+				//store image to imgbb and get the photo url
+				const formData = new FormData();
+				formData.append('image', data.photo[0]);
+				const image_API_URL = `https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_image_hosting_key}`
+				axios.post(image_API_URL, formData)
+				.then(res=>{
+					console.log('after image upload',res.data.data.display_url);
+					const userProfile ={
+						displayName: data.name,
+						photoURL: res.data.data.display_url
+					}
+					updateUserProfile(userProfile)
+					.then(()=>{
+						console.log('user profile updated');
+						navigate(location.state || "/");
+					})	
+					.catch(error=>{
+						console.error(error);
+					})
+
+				})
 			})
 			.catch(error => {
 				console.error(error);
 			});
 	}
 	return (
-		<div className="w-full max-w-md rounded-[2rem] border border-white/60 bg-white/80 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.14)] backdrop-blur-xl sm:p-8">
+		<div className="w-full max-w-md rounded-4xl border border-white/60 bg-white/80 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.14)] backdrop-blur-xl sm:p-8">
 			<div className="mb-8 text-center">
 				<p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">Join now</p>
 				<h3 className="mt-2 text-3xl font-bold text-slate-900">Create your account</h3>
@@ -27,6 +52,17 @@ const Register = () => {
 			</div>
 			<form className="space-y-5" onSubmit={handleSubmit(handleRegistration)} >
 				<fieldset className="space-y-4">
+					<div>
+						<label className="mb-2 block text-sm font-semibold text-slate-700">Name</label>
+						<input type="text" {...register("name", { required: true })} className="input w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#CABE66] focus:ring-2 focus:ring-[#CABE66]/25" placeholder="Enter your name" />
+						{errors.name?.type === "required" && <p className="mt-2 text-sm text-red-500">Name is required</p>}
+					</div>
+					{/* photo image field */}
+					<div>
+						<label className="mb-2 block text-sm font-semibold text-slate-700">Photo</label>
+						<input type="file" {...register("photo", { required: true })} className="file-input w-full rounded-2xl border border-slate-200 bg-white/90  text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#CABE66] focus:ring-2 focus:ring-[#CABE66]/25" />
+						{errors.photo?.type === "required" && <p className="mt-2 text-sm text-red-500">Photo is required</p>}
+					</div>
 					<div>
 						<label className="mb-2 block text-sm font-semibold text-slate-700">Email</label>
 						<input type="email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} className="input w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#CABE66] focus:ring-2 focus:ring-[#CABE66]/25" placeholder="name@example.com" />
