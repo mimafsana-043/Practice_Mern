@@ -1,12 +1,13 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
 
 const SendPercel = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, control, formState: { errors } } = useForm();
     const serviceCenters = useLoaderData();
     const regionDuplicate = serviceCenters.map(c=>c.region);
     const regions = [...new Set(regionDuplicate)];
-    const senderRegion = watch("senderRegion");
+    const senderRegion = useWatch({control, name:"senderRegion"});
+    const receiverRegion = useWatch({control, name:"receiverRegion"});
     console.log(regions);
 
     const districtByRegion = region =>{
@@ -109,8 +110,8 @@ const SendPercel = () => {
                             {errors.receiverPhone && <p className="text-red-500">Receiver phone number is required</p>}
                                     {/*Sender Region*/}
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Sender Region</legend>
-                                <select {...register("senderRegion")} defaultValue="Pick a region" className="select w-full">
+                                <legend className="fieldset-legend">Receiver Region</legend>
+                                <select {...register("receiverRegion")} defaultValue="Pick a region" className="select w-full">
                                     <option disabled={true}>Pick a region</option>
                                     {
                                         regions.map((r,i)=><option key={i} value={r}>{r}</option>)
@@ -119,13 +120,13 @@ const SendPercel = () => {
                                 
                             </fieldset>
 
-                            {/*Sender District*/}
+                            {/*Receiver District*/}
                             <fieldset className="fieldset">
-                                <legend className="fieldset-legend">Sender District</legend>
-                                <select {...register("senderDistrict")} defaultValue="Pick a district" className="select w-full">
+                                <legend className="fieldset-legend">Receiver District</legend>
+                                <select {...register("receiverDistrict")} defaultValue="Pick a district" className="select w-full">
                                     <option disabled={true}>Pick a district</option>
                                     {
-                                        districtByRegion(senderRegion).map((d,i)=><option key={i} value={d}>{d}</option>)
+                                        districtByRegion(receiverRegion).map((d,i)=><option key={i} value={d}>{d}</option>)
                                     }
                                 </select>
                             </fieldset>
