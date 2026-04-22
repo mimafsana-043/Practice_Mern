@@ -16,6 +16,8 @@ const SendPercel = () => {
     }
     const handleSendPercel = (data) => {
         console.log(data);
+        const sameDistrict = data.senderDistrict === data.receiverDistrict;
+        console.log('Same district: ', sameDistrict);
     }
     return (
         <div>
